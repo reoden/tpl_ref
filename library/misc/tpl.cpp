@@ -18,13 +18,8 @@ std::ostream &operator<<(std::ostream &os, const std::vector<T> &v) {
   return os;
 }
 
-template <class T, class U = T> bool chmin(T &x, U &&y) {
-  return y < x and (x = std::forward<U>(y), true);
-}
-
-template <class T, class U = T> bool chmax(T &x, U &&y) {
-  return x < y and (x = std::forward<U>(y), true);
-}
+template <class T, class U = T> bool chmin(T &x, U &&y) { return y < x and (x = std::forward<U>(y), true); }
+template <class T, class U = T> bool chmax(T &x, U &&y) { return x < y and (x = std::forward<U>(y), true); }
 
 template <class T> void mkuni(std::vector<T> &v) {
   std::ranges::sort(v);

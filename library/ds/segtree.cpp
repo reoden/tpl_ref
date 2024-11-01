@@ -1,15 +1,14 @@
-#include <bits/stdc++.h>
-using namespace std;
-
+#include <functional>
+#include <vector>
 template <typename K> class SegmentTree {
-  vector<K> nodes;
+  std::vector<K> nodes;
   int n;
 
 public:
   SegmentTree(int n) : n(n), nodes(n * 2) {}
 
   template <typename Gen> void build(Gen gen) {
-    function<void(int, int, int)> _build = [&](int L, int R, int p) {
+    std::function<void(int, int, int)> _build = [&](int L, int R, int p) {
       if (L == R) {
         nodes[p] = gen(L);
         return;
@@ -22,7 +21,7 @@ public:
   }
 
   void modify(int id, K v, bool is_add = false) {
-    function<void(int, int, int)> _modify = [&](int L, int R, int p) {
+    std::function<void(int, int, int)> _modify = [&](int L, int R, int p) {
       if (L == R) {
         if (is_add)
           nodes[p] += v;
@@ -41,7 +40,7 @@ public:
   }
 
   K query(int l, int r) {
-    function<K(int, int, int)> _query = [&](int L, int R, int p) -> K {
+    std::function<K(int, int, int)> _query = [&](int L, int R, int p) -> K {
       if (l <= L && R <= r) { return nodes[p]; }
       int mid = (L + R) / 2, lp = p + 1, rp = p + (mid - L + 1) * 2;
       if (mid >= l && mid < r)
@@ -56,7 +55,7 @@ public:
 
   template <typename V, typename Fn, typename Fn2>
   V query(int l, int r, V init_value, Fn merge, Fn2 parse) {
-    function<V(int, int, int)> _query = [&](int L, int R, int p) -> V {
+    std::function<V(int, int, int)> _query = [&](int L, int R, int p) -> V {
       if (l <= L && R <= r) {
         V ret = parse(nodes[p]);
         return ret;

@@ -1,4 +1,5 @@
 #include <vector>
+#include <map>
 #include "./graph_utility.hpp"
 namespace Nyaan {
 // Rerooting

@@ -1,5 +1,6 @@
-#include <bits/stdc++.h>
-using namespace std;
+#include <algorithm>
+#include <cassert>
+#include <vector>
 
 struct dsu {
 public:
