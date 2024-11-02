@@ -1,5 +1,4 @@
-#include <bits/stdc++.h>
-using namespace std;
+#include <vector>
 
 template <typename T> struct pref_sum_2d {
   int n, m;
