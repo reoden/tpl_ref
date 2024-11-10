@@ -1,5 +1,5 @@
-#include <bits/stdc++.h>
-using namespace std;
+#include <array>
+#include <cassert>
 
 namespace ecnerwala {
 template <typename T, int NDIMS> struct tensor_view {
