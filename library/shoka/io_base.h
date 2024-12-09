@@ -18,7 +18,7 @@ template <typename IO> struct IOBaseT {
     return v;
   }
 
-  template <typename T = int> std::vector<T> read_v(size_t n) {
+  template <typename T = int> std::vector<T> read_v(std::size_t n) {
     std::vector<T> vec(n);
     for (auto &&v : vec) {
       v = read<T>();
@@ -51,12 +51,14 @@ template <typename IO> struct IOBaseT {
   }
 
   template <typename T> IOBaseT &operator<<(T &&o) {
-    return static_cast<IO *>(this)->template write1(std::forward<T>(o)), *this;
+    return static_cast<IO *>(this)->template write1(std::forward<T>(o)),
+         *this;
   }
 
-private:
+  private:
   template <typename Tuple, std::size_t... Index>
   void read_t_(Tuple &t, std::index_sequence<Index...>) {
-    (..., (std::get<Index>(t) = read<std::tuple_element_t<Index, Tuple>>()));
+    (...,
+     (std::get<Index>(t) = read<std::tuple_element_t<Index, Tuple>>()));
   }
 };

@@ -24,7 +24,7 @@ public:
     std::function<void(int, int, int)> _modify = [&](int L, int R, int p) {
       if (L == R) {
         if (is_add)
-          nodes[p] += v;
+          nodes[p] = nodes[p] + v;
         else
           nodes[p] = v;
         return;
@@ -70,17 +70,12 @@ public:
   }
 };
 
-struct node {
-  int s;
-  node &operator+=(const node &rhs) {
-    int a = s + rhs.s;
-    s = a;
-    return *this;
-  }
+struct S {
 };
 
-node operator+(const node &lhs, const node &rhs) {
-  node ret = lhs;
-  ret += rhs;
-  return std::move(ret);
+S op(S a, S b) {
+}
+
+S operator+(const S &l, const S &r) {
+  return op(l, r);
 }
